@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "flowbite-react": "^0.7.3",
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.2",
     "next": "14.1.3",
