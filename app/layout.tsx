@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Navbar from "@/components/ui/Navbar";
 import "./globals.css";
 import { Providers } from "./providers";
 import NextTopLoader from "nextjs-toploader";
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body>
         <NextTopLoader showSpinner={false} />
+        <Navbar />
         <Providers>{children}</Providers>
       </body>
     </html>
