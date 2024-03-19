@@ -4,6 +4,7 @@ import Navbar from "@/components/ui/Navbar";
 import "./globals.css";
 import { Providers } from "./providers";
 import NextTopLoader from "nextjs-toploader";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body>
-        <NextTopLoader showSpinner={false} />
-        <Navbar />
-        <Providers>{children}</Providers>
+        <ReactQueryProvider>
+          <NextTopLoader showSpinner={false} />
+          <Navbar />
+          <Providers>{children}</Providers>
+        </ReactQueryProvider>
       </body>
     </html>
   );
