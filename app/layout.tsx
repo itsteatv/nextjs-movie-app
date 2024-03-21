@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import NextTopLoader from "nextjs-toploader";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <NextTopLoader showSpinner={false} />
           <Navbar />
+          <Toaster />
           <Providers>{children}</Providers>
         </ReactQueryProvider>
       </body>
