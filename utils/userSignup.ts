@@ -1,12 +1,12 @@
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import toast from "react-hot-toast";
 
-export type userSignupData = {
+export type userSignUpData = {
     email: string;
     password: string;
 }
 
-export const userSignup = async ({ email, password }: userSignupData, router: AppRouterInstance) => {
+export const userSignUp = async ({ email, password }: userSignUpData, router: AppRouterInstance) => {
     const requestOptions = {
         method: "POST",
         body: JSON.stringify({ email, password }),

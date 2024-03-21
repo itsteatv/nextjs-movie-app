@@ -1,14 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
-import { userSignup } from "@/utils/userSignup";
-import { userSignupData } from "@/utils/userSignup";
+import { userSignUp } from "@/utils/userSignup";
+import { userSignUpData } from "@/utils/userSignup";
 import { useRouter } from "next/navigation";
 
-export function useSignup() {
+export function useSignUp() {
   const router = useRouter();
 
-  const { isPending, mutate: userSignupFn } = useMutation({
-    mutationFn: ({ email, password }: userSignupData) =>
-      userSignup({ email, password }, router),
+  const { isPending, mutate: userSignUpFn } = useMutation({
+    mutationFn: ({ email, password }: userSignUpData) =>
+    userSignUp({ email, password }, router),
 
     onSuccess: (data) => {
       console.log(data);
@@ -19,5 +19,5 @@ export function useSignup() {
     },
   });
 
-  return { isPending, userSignupFn };
+  return { isPending, userSignUpFn };
 }
