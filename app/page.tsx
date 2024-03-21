@@ -1,7 +1,7 @@
 import React from "react";
 
 const Home = () => {
-  return <div>Next.js 14 movie app</div>;
+  return <div></div>;
 };
 
 export default Home;
