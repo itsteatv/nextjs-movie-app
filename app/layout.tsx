@@ -27,7 +27,28 @@ export default function RootLayout({
         <ReactQueryProvider>
           <NextTopLoader showSpinner={false} />
           <Navbar />
-          <Toaster />
+          <Toaster
+            toastOptions={{
+              error: {
+                style: {
+                  fontSize: "0.8rem",
+                  borderRadius: "1rem",
+                  color: "#fff",
+                  backgroundColor: "#111",
+                  fontFamily: "monospace",
+                },
+              },
+              success: {
+                style: {
+                  fontSize: "0.8rem",
+                  borderRadius: "1rem",
+                  color: "#fff",
+                  backgroundColor: "#111",
+                  fontFamily: "monospace",
+                },
+              },
+            }}
+          />
           <Providers>{children}</Providers>
         </ReactQueryProvider>
       </body>
