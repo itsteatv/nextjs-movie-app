@@ -45,17 +45,13 @@ npm run dev
 
 ## 1. Authentication:
 
-- [ ] signup
+- [x] signup
 
-- [ ] signin
+- [x] signin
 
-- [ ] signout
-
-- [ ] google oauth
+- [x] signout
 
 - [ ] github oauth
-
-- [ ] multiply account with pin
 
 ## 2. Movies:
 
