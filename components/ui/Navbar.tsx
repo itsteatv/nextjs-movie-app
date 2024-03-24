@@ -11,11 +11,14 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = ["Home", "TV", "Movies", "My List"];
+
+  const { data: session } = useSession();
 
   return (
     <NextUINavbar
@@ -44,16 +47,31 @@ const Header = () => {
           <Link color="foreground">My List</Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="/signin">Sign In</Link>
-        </NavbarItem>
+      {!session ? (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link href="/signin">Sign In</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button href="/signup" as={Link} color="primary" variant="flat">
+              Sign Up
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      ) : (
         <NavbarItem>
-          <Button href="/signup" as={Link} color="primary" variant="flat">
-            Sign Up
+          <Button
+            onClick={() => signOut()}
+            as={Link}
+            color="danger"
+            className="text-white"
+            variant="ghost"
+          >
+            Sign Out
           </Button>
         </NavbarItem>
-      </NavbarContent>
+      )}
+
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem
