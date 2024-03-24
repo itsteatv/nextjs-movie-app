@@ -16,9 +16,13 @@ import { useSession, signOut } from "next-auth/react";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuItems = ["Home", "TV", "Movies", "My List"];
-
   const { data: session } = useSession();
+
+  console.log(session ? "signed in" : "not signed in");
+
+  const menuItems = session
+    ? ["Home", "TV", "Movies", "My List"]
+    : ["Home", "TV", "Movies", "Sign In", "Sign Up"];
 
   return (
     <NextUINavbar
@@ -35,9 +39,7 @@ const Header = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
-          <Link href="/">
-            Home
-          </Link>
+          <Link href="/">Home</Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="/tv">
@@ -56,7 +58,7 @@ const Header = () => {
         </NavbarItem>
       </NavbarContent>
       {!session ? (
-        <NavbarContent justify="end">
+        <NavbarContent justify="end" className="hidden sm:flex">
           <NavbarItem>
             <Link href="/signin">Sign In</Link>
           </NavbarItem>
@@ -72,7 +74,7 @@ const Header = () => {
             onClick={() => signOut()}
             as={Link}
             color="danger"
-            className="text-white"
+            className="text-white hidden sm:flex"
             variant="ghost"
           >
             Sign Out
@@ -82,25 +84,33 @@ const Header = () => {
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
-          <NavbarMenuItem
-            className="font-SourceCodePro"
-            key={`${item}-${index}`}
-          >
+          <NavbarItem key={item}>
             <Link
               color={
                 index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
                   ? "danger"
+                  : index === menuItems.length - 1
+                  ? "primary"
                   : "foreground"
               }
               className="w-full"
               size="lg"
+              href={`/${item.toLowerCase().split(" ").join("")}`}
             >
               {item}
             </Link>
-          </NavbarMenuItem>
+          </NavbarItem>
         ))}
+        {session && (
+          <NavbarItem>
+            <div
+              onClick={() => signOut()}
+              className="text-white cursor-pointer"
+            >
+              Sign Out
+            </div>
+          </NavbarItem>
+        )}
       </NavbarMenu>
     </NextUINavbar>
   );
