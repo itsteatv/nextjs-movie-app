@@ -35,21 +35,29 @@ const Header = () => {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive>
-          <Link aria-current="page">Home</Link>
+          <Link href="/">
+            Home
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground">TV</Link>
+          <Link color="foreground" href="/tv">
+            TV
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground">Movies</Link>
+          <Link color="foreground" href="/movies">
+            Movies
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground">My List</Link>
+          <Link color="foreground" href="/mylist">
+            My List
+          </Link>
         </NavbarItem>
       </NavbarContent>
       {!session ? (
         <NavbarContent justify="end">
-          <NavbarItem className="hidden lg:flex">
+          <NavbarItem>
             <Link href="/signin">Sign In</Link>
           </NavbarItem>
           <NavbarItem>
