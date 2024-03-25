@@ -65,7 +65,16 @@ const SignUp = () => {
       onSubmit={handleSubmit}
       className="flex items-center flex-col justify-center gap-4 min-h-screen font-SourceCodePro"
     >
-      <h1 className="text-4xl font-extrabold mb-4">Sign Up</h1>
+      <h1 className="text-4xl font-extrabold">Sign Up</h1>
+      <p className="text-[0.75rem] flex gap-x-2 text-gray-300">
+        <Link
+          href="/signin"
+          className="italic duration-300 hover:text-blue-500 active:text-blue-500"
+        >
+          Sign In
+        </Link>
+        with an existing account
+      </p>
       <div className="w-full max-w-[20rem]">
         <Input
           type="email"
@@ -96,15 +105,6 @@ const SignUp = () => {
           className="max-w-xs"
         />
       </div>
-      <p className="text-xs flex gap-x-2">
-        <Link
-          href="/signin"
-          className="italic duration-300 hover:text-blue-500 active:text-blue-500"
-        >
-          Sign In
-        </Link>
-        with an existing account
-      </p>
       <Button type="submit" color="primary" variant="bordered">
         Sign Up
       </Button>
