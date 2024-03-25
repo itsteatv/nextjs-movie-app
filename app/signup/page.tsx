@@ -1,18 +1,28 @@
 "use client";
 
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Spinner } from "@nextui-org/react";
 import { EyeFilledIcon } from "@/components/ui/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "@/components/ui/EyeSlashFilledIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSignUp } from "@/hooks/useSignUp";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { isPending, userSignUpFn } = useSignUp();
+  const { data: session, status: sessionStatus } = useSession();
+  const router = useRouter();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
+
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace("/mylist");
+    }
+  }, [sessionStatus, router]);
 
   const isValidEmail = function (email: string) {
     const allowedEmailDomains = ["gmail.com", "yahoo.mail.com", "outlook.com"];
@@ -59,6 +69,15 @@ const SignUp = () => {
 
     userSignUpFn({ email, password });
   };
+
+  if (sessionStatus === "authenticated") {
+    return (
+      <Spinner
+        className="flex items-center justify-center min-h-screen"
+        size="lg"
+      />
+    );
+  }
 
   return (
     <form
