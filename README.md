@@ -51,7 +51,7 @@ npm run dev
 
 - [x] signout
 
-- [ ] github oauth
+- [x] github oauth
 
 ## 2. Movies:
 
